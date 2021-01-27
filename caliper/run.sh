@@ -17,9 +17,11 @@ NETWORK=networks/fabric/v2/v2.1.0/2org1peercouchdb_raft/api/fabric-api-solo-node
 # cd ${WORKSPACE}
 
 # Available benchmarks
-BENCHMARK_NAMES=("get_asset" "get_asset_batch")
-BENCHMARKS=("benchmarks/api/fabric/test/get-asset.yaml")
-# BENCHMARK="benchmarks/api/fabric/test.yaml"
+BENCHMARK_NAMES=("get_asset" "get_asset_batch" "create_asset" "create_asset_batch")
+BENCHMARKS=("benchmarks/api/fabric/test/get-asset.yaml" "benchmarks/api/fabric/test/get-asset-batch.yaml" "benchmarks/api/fabric/test/create-asset.yaml" "benchmarks/api/fabric/test/create-asset-batch.yaml")
+# Selected benchmarks
+BENCHMARK_NAMES=("get_asset_batch")
+BENCHMARKS=("benchmarks/api/fabric/test/get-asset-batch.yaml")
 # Available phases
 PHASES_INIT=("caliper-flow-only-start" "caliper-flow-only-init" "caliper-flow-only-install")
 PHASES_TEST=("caliper-flow-only-test")
@@ -27,6 +29,7 @@ PHASES_CLEANUP=("caliper-flow-only-end")
 PHASES=("caliper-flow-only-start" "caliper-flow-only-init" "caliper-flow-only-install" "caliper-flow-only-test" "caliper-flow-only-end")
 REPS=1
 BENCH_INDEX=0
+BENCH_INDEX_END=1000
 
 COUNTER=0
 while [  $COUNTER -lt $REPS ]; do
@@ -38,12 +41,18 @@ for BENCHMARK in ${BENCHMARKS[@]}; do
     echo "test bench #" $BENCH_INDEX
     echo ${BENCHMARK_NAMES[BENCH_INDEX]}
     let BENCH_INDEX=BENCH_INDEX+1
+    if [ $BENCH_INDEX -gt $BENCH_INDEX_END ]
+    then
+        break
+    fi
 done
+
+# exit 1
 
 # cp report.html report_blank.html
 BENCH_INDEX=0
 COUNTER=0
-exit 1
+# exit 1
 
 
 # Execute Phases
@@ -81,7 +90,7 @@ for BENCHMARK in ${BENCHMARKS[@]}; do
             runBenchmark ${PHASE} ${BENCHMARK}
         done
         # copy report
-        cp report.html report_${BENCHMARK_NAMES[BENCH_INDEX]}_run${COUNTER}.html
+        cp report.html report_${BENCHMARK_NAMES[BENCH_INDEX]}_run_${COUNTER}.html
         let COUNTER=COUNTER+1 
     done
     
@@ -93,4 +102,10 @@ for BENCHMARK in ${BENCHMARKS[@]}; do
     done    
 
     let BENCH_INDEX=BENCH_INDEX+1
+
+    if [ $BENCH_INDEX -gt $BENCH_INDEX_END ]
+    then
+        break
+    fi
+    
 done

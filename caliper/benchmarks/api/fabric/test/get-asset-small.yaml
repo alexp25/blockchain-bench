@@ -18,9 +18,9 @@ test:
       chaincodeID: fixed-asset-base
       txDuration: 30
       rateControl:
-        type: fixed-load
+        type: fixed-rate
         opts:
-          transactionLoad: 50
+          tps: 100
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
@@ -29,8 +29,6 @@ test:
             - 100
             - 1000
             - 2000
-            - 4000
-            - 8000
           assets: 1000
           byteSize: 100
           consensus: false
@@ -42,9 +40,9 @@ test:
       chaincodeID: fixed-asset-base
       txDuration: 30
       rateControl:
-        type: fixed-load
+        type: fixed-rate
         opts:
-          transactionLoad: 50
+          tps: 100
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
@@ -61,52 +59,14 @@ test:
       chaincodeID: fixed-asset-base
       txDuration: 30
       rateControl:
-        type: fixed-load
+        type: fixed-rate
         opts:
-          transactionLoad: 50
+          tps: 100
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
           chaincodeID: fixed-asset-base
           noSetup: true
           byteSize: 2000
-          assets: 1000
-          consensus: false
-    - label: get-asset-evaluate-4000
-      description: >-
-        Test an evaluateTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `getAsset`. This method
-        performs a getState on an item that matches an asset of size 4000 bytes.
-      chaincodeID: fixed-asset-base
-      txDuration: 30
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 50
-      workload:
-        module: benchmarks/api/fabric/lib/get-asset.js
-        arguments:
-          chaincodeID: fixed-asset-base
-          noSetup: true
-          byteSize: 4000
-          assets: 1000
-          consensus: false
-    - label: get-asset-evaluate-8000
-      description: >-
-        Test an evaluateTransaction() Gateway method against the NodeJS
-        `fixed-asset` Smart Contract method named `getAsset`. This method
-        performs a getState on an item that matches an asset of size 8000 bytes.
-      chaincodeID: fixed-asset-base
-      txDuration: 30
-      rateControl:
-        type: fixed-load
-        opts:
-          transactionLoad: 50
-      workload:
-        module: benchmarks/api/fabric/lib/get-asset.js
-        arguments:
-          chaincodeID: fixed-asset-base
-          noSetup: true
-          byteSize: 8000
           assets: 1000
           consensus: false
