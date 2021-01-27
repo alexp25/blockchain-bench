@@ -4,7 +4,7 @@ test:
     This is a test yaml for the existing fixed-asset benchmarks
   workers:
     type: local
-    number: 10
+    number: 2
   rounds:
     - label: get-asset-evaluate-100
       description: >-
@@ -16,27 +16,24 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 100
+          tps: 10
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
           chaincodeID: fixed-asset
-          consensus: false
-      arguments:
-        chaincodeID: fixed-asset
-        create_sizes:
-          - 100
-          - 1000
-          - 2000
-          - 4000
-          - 8000
-          - 16000
-          - 32000
-          - 64000
-        assets: 1000
-        bytesize: 100
-        consensus: false
-      callback: benchmarks/api/fabric/lib/get-asset.js
+          create_sizes:
+            - 100
+            - 1000
+            - 2000
+            - 4000
+            - 8000
+            - 16000
+            - 32000
+            - 64000
+          assets: 1000
+          byteSize: 100
+          consensus: true
+      # callback: benchmarks/api/fabric/lib/get-asset.js
     - label: get-asset-evaluate-1000
       description: >-
         Test an evaluateTransaction() Gateway method against the Go
@@ -47,19 +44,16 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 100
+          tps: 10
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
           chaincodeID: fixed-asset
-          consensus: false
-      arguments:
-        chaincodeID: fixed-asset
-        nosetup: true
-        assets: 1000
-        bytesize: 1000
-        consensus: false
-      callback: benchmarks/api/fabric/lib/get-asset.js
+          noSetup: true
+          assets: 1000
+          byteSize: 1000
+          consensus: true
+      # callback: benchmarks/api/fabric/lib/get-asset.js
     - label: get-asset-evaluate-2000
       description: >-
         Test an evaluateTransaction() Gateway method against the Go
@@ -70,19 +64,16 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 100
+          tps: 10
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
           chaincodeID: fixed-asset
-          consensus: false
-      arguments:
-        chaincodeID: fixed-asset
-        nosetup: true
-        bytesize: 2000
-        assets: 1000
-        consensus: false
-      callback: benchmarks/api/fabric/lib/get-asset.js
+          noSetup: true
+          assets: 1000
+          byteSize: 2000
+          consensus: true
+      # callback: benchmarks/api/fabric/lib/get-asset.js
     - label: get-asset-evaluate-4000
       description: >-
         Test an evaluateTransaction() Gateway method against the Go
@@ -93,19 +84,16 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 100
+          tps: 10
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
           chaincodeID: fixed-asset
-          consensus: false
-      arguments:
-        chaincodeID: fixed-asset
-        nosetup: true
-        bytesize: 4000
-        assets: 1000
-        consensus: false
-      callback: benchmarks/api/fabric/lib/get-asset.js
+          noSetup: true
+          assets: 1000
+          byteSize: 4000
+          consensus: true
+      # callback: benchmarks/api/fabric/lib/get-asset.js
     - label: get-asset-evaluate-8000
       description: >-
         Test an evaluateTransaction() Gateway method against the Go
@@ -116,19 +104,16 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 100
+          tps: 10
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
           chaincodeID: fixed-asset
-          consensus: false
-      arguments:
-        chaincodeID: fixed-asset
-        nosetup: true
-        bytesize: 8000
-        assets: 1000
-        consensus: false
-      callback: benchmarks/api/fabric/lib/get-asset.js
+          noSetup: true
+          assets: 1000
+          byteSize: 8000
+          consensus: true
+      # callback: benchmarks/api/fabric/lib/get-asset.js
     - label: get-asset-evaluate-16000
       description: >-
         Test an evaluateTransaction() Gateway method against the Go
@@ -139,19 +124,16 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 100
+          tps: 10
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
           chaincodeID: fixed-asset
-          consensus: false
-      arguments:
-        chaincodeID: fixed-asset
-        nosetup: true
-        bytesize: 16000
-        assets: 1000
-        consensus: false
-      callback: benchmarks/api/fabric/lib/get-asset.js
+          noSetup: true
+          assets: 1000
+          byteSize: 16000
+          consensus: true
+      # callback: benchmarks/api/fabric/lib/get-asset.js
     - label: get-asset-evaluate-32000
       description: >-
         Test an evaluateTransaction() Gateway method against the Go
@@ -162,19 +144,16 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 100
+          tps: 10
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
           chaincodeID: fixed-asset
-          consensus: false
-      arguments:
-        chaincodeID: fixed-asset
-        nosetup: true
-        bytesize: 32000
-        assets: 1000
-        consensus: false
-      callback: benchmarks/api/fabric/lib/get-asset.js
+          noSetup: true
+          assets: 1000
+          byteSize: 32000
+          consensus: true
+      # callback: benchmarks/api/fabric/lib/get-asset.js
     - label: get-asset-evaluate-64000
       description: >-
         Test an evaluateTransaction() Gateway method against the Go
@@ -185,16 +164,13 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 100
+          tps: 10
       workload:
         module: benchmarks/api/fabric/lib/get-asset.js
         arguments:
           chaincodeID: fixed-asset
-          consensus: false
-      arguments:
-        chaincodeID: fixed-asset
-        nosetup: true
-        bytesize: 64000
-        assets: 1000
-        consensus: false
-      callback: benchmarks/api/fabric/lib/get-asset.js
+          noSetup: true
+          assets: 1000
+          byteSize: 64000
+          consensus: true
+      # callback: benchmarks/api/fabric/lib/get-asset.js
